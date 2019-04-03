@@ -15,7 +15,7 @@
 install.packages("ggmap")
 library(ggmap)
 
-register_google(key="Google_API_Key")
+register_google(key="Google_API_Key")      # Google API Key ¿‘§©
 
 gc <- geocode(enc2utf8('º≠øÔ'))
 cen <- as.numeric(gc)
