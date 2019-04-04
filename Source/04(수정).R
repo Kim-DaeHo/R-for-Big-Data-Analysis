@@ -54,38 +54,38 @@ barplot(height,                    # 벡터 데이터
         names.arg = name)          # 벡터 데이터의 names
         
 # 3) 바차트에 제목 달기
-barplot(height,                    # 벡터 데이터
-        names.arg=name,            # 벡터 데이터의 names
-        main="부서별 영업실 적")   # 차트 제목
+barplot(height,                      # 벡터 데이터
+        names.arg = name,            # 벡터 데이터의 names
+        main = "부서별 영업실적")    # 차트 제목
 
 # 4) 바차트에 바에 색깔칠하기         
-barplot(height,                    # 벡터 데이터
-        names.arg=name,            # 벡터 데이터의 names
-        main="부서별 영업실 적",     # 차트 제목
-        col=rainbow(length(height)))
+barplot(height,                       # 벡터 데이터
+        names.arg = name,             # 벡터 데이터의 names
+        main = "부서별 영업실적",     # 차트 제목
+        col = rainbow(length(height)))
 
 # 5) 바차트의 X축에 제목달기
-barplot(height,                    # 벡터 데이터
-        names.arg=name,            # 벡터 데이터의 names
-        main="부서별 영업실 적",     # 차트 제목
-        col=rainbow(length(height)), # 바의 색깔 지정
-        xlab="부서")
+barplot(height,                        # 벡터 데이터
+        names.arg = name,              # 벡터 데이터의 names
+        main = "부서별 영업실적",      # 차트 제목
+        col = rainbow(length(height)), # 바의 색깔 지정
+        xlab = "부서")
 
 # 6) 바차트의 y축에 제목달기
-barplot(height,                    # 벡터 데이터
-        names.arg=name,            # 벡터 데이터의 names
-        main="부서별 영업실 적",     # 차트 제목
-        col=rainbow(length(height)), # 바의 색깔 지정
-        xlab="부서",                 # x축 제목  
-        ylab="영업 실적(억 원)")     # y축 제목
+barplot(height,                        # 벡터 데이터
+        names.arg = name,              # 벡터 데이터의 names
+        main = "부서별 영업실 적",     # 차트 제목
+        col = rainbow(length(height)), # 바의 색깔 지정
+        xlab = "부서",                 # x축 제목  
+        ylab = "영업 실적(억 원)")     # y축 제목
 
 # 7) 최종
-barplot(height,                    # 벡터 데이터
-        names.arg=name,            # 벡터 데이터의 names
-        main="부서별 영업실 적",     # 차트 제목
-        col=rainbow(length(height)), # 바의 색깔 지정
-        xlab="부서",                 # x축 제목  
-        ylab="영업 실적(억 원)")     # y축 제목
+barplot(height,                        # 벡터 데이터
+        names.arg = name,              # 벡터 데이터의 names
+        main = "부서별 영업실 적",     # 차트 제목
+        col = rainbow(length(height)), # 바의 색깔 지정
+        xlab = "부서",                 # x축 제목  
+        ylab = "영업 실적(억 원)")     # y축 제목
 
 
 
