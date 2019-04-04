@@ -12,12 +12,31 @@
 ########################################
 
 x <- c(9, 15, 20, 6)
-label <- c("영업 1팀", "영업 2팀", "영업 3팀", "영업 4팀")
 
+# 1) 단순 파이차트 그리기
+pie(x)                   # 벡터 데이터의 파이차트 그리기
+                         # 차트의 조각들에 데이터의 색인번호가 출력됨.
+
+
+# 2) 파이차트의 데이터에 이름 달기
+label <- c("영업 1팀", "영업 2팀", "영업 3팀", "영업 4팀")
+                         # 데이터 요소들의 이름 지정하기
+pie(x, 
+    labels = label)      # 데이터 요소들의 이름을 차트에 출력하기
+
+
+# 3) 파이차트의 전체 제목 달기
+pie(x, 
+    labels = label,
+    main="부서별 영업 실적")   # 차트의 제목 출력
+
+
+# 4) 최종
 pie(x,                         # 벡터 데이터
     labels=label,              # 벡터 데이터의 names
     main="부서별 영업 실적")   # 차트의 제목
 
+# 파이 조각에 데이터 라벨을출력하는 것은 제5장에서 확인함.
 
 ########################################
 # p. 105 - 2) 단순 바 차트
@@ -26,12 +45,49 @@ pie(x,                         # 벡터 데이터
 height <- c(9, 15, 20, 6)
 name <- c("영업 1팀", "영업 2팀", "영업 3팀", "영업 4팀")
 
+# 1) 단순 바차트 그리기
+barplot(height)                    # 벡터 데이터를 바차트로 출력
+
+
+# 2) 바차트의 x축에 이름달기
+barplot(height,                    # 벡터 데이터
+        names.arg = name)          # 벡터 데이터의 names
+        
+# 3) 바차트에 제목 달기
+barplot(height,                    # 벡터 데이터
+        names.arg=name,            # 벡터 데이터의 names
+        main="부서별 영업실 적")   # 차트 제목
+
+# 4) 바차트에 바에 색깔칠하기         
+barplot(height,                    # 벡터 데이터
+        names.arg=name,            # 벡터 데이터의 names
+        main="부서별 영업실 적",     # 차트 제목
+        col=rainbow(length(height)))
+
+# 5) 바차트의 X축에 제목달기
+barplot(height,                    # 벡터 데이터
+        names.arg=name,            # 벡터 데이터의 names
+        main="부서별 영업실 적",     # 차트 제목
+        col=rainbow(length(height)), # 바의 색깔 지정
+        xlab="부서")
+
+# 6) 바차트의 y축에 제목달기
 barplot(height,                    # 벡터 데이터
         names.arg=name,            # 벡터 데이터의 names
         main="부서별 영업실 적",     # 차트 제목
         col=rainbow(length(height)), # 바의 색깔 지정
         xlab="부서",                 # x축 제목  
         ylab="영업 실적(억 원)")     # y축 제목
+
+# 7) 최종
+barplot(height,                    # 벡터 데이터
+        names.arg=name,            # 벡터 데이터의 names
+        main="부서별 영업실 적",     # 차트 제목
+        col=rainbow(length(height)), # 바의 색깔 지정
+        xlab="부서",                 # x축 제목  
+        ylab="영업 실적(억 원)")     # y축 제목
+
+
 
 ########################################
 # 2. 애니메이션으로 카운트 다운
@@ -82,7 +138,7 @@ addr <- c("충청북도 단양군 매포읍 삼봉로 644-33",
 
 # p.108
 
-register_google(key="API_key")     # Google API Key 사용
+register_google(key="Google_API_Key")     # Google API Key 사용
 
 gc <- geocode(enc2utf8(addr))      # 주소지에 대한 geocode 확보
 gc
