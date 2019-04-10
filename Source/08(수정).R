@@ -46,7 +46,8 @@ library(wordcloud)
 library(RColorBrewer)
 pal2 <- brewer.pal(8,"Dark2")
 
-data <- read.csv(file.choose(), header=T)
+# Data/101_DT_1B26001_A01_M.csv 파일 불러오기
+data <- read.csv(file.choose(), header=T) 
 head(data)
 
 ##################################################
@@ -97,10 +98,25 @@ library(KoNLP)
 library(RColorBrewer)
 library(wordcloud)
 
-useSejongDic()  
+#############################################################
+# library(KoNLP) 에러발생과 처리방법
+#############################################################
+# <에러발생>
+# Error: package or namespace load failed for ‘KoNLP’:
+#  .onLoad가 loadNamespace()에서 'rJava'때문에 실패했습니다:
+#   호출: fun(libname, pkgname)
+#   에러: JAVA_HOME cannot be determined from the Registry
+#############################################################
+#<처리방법>
+# 자바 다운로드 : http://www.java.com/ko 혹은 http://java.com/ko/download/manual.jsp
+# 설치하면 됨.
+#############################################################
+
+useSejongDic()   
 
 pal2 <- brewer.pal(8,"Dark2")   
 
+# Data/speech.txt 또는 Data/speech2.txt 파일 불러오기
 text <- readLines(file.choose())
 text 
 
