@@ -113,7 +113,7 @@ pal2 <- brewer.pal(8,"Dark2")
 
 # Data/speech.txt 또는 Data/speech2.txt 파일 불러오기
 text <- readLines(file.choose())    # readLines()은 각 줄을 문자열로 다루므로, 
-                                      반환값은 문자열로 이뤄진 '문자 벡터'가 된다.
+                                    # 반환값은 문자열로 이뤄진 '문자 벡터'가 된다.
 text 
 
 # p.220
@@ -143,7 +143,7 @@ barplot(temp, las = 2, names.arg = names(temp), # 차트 출력
          ylab = "Word frequencies") # 축 입력
 ########################
 
-wordcloud(names(word_count),freq=word_count,scale=c(6,0.3),min.freq=3, random.order=F,rot.per=.1,colors=pal2)
+wordcloud(names(word_count),freq=word_count,scale=c(8,0.4),min.freq=1, random.order=F,rot.per=.1,colors=pal2)
 
 #---------------------------------------------
 # p.222 사전에 단어 추가 및 추출된 명사의 삭제
@@ -183,7 +183,7 @@ barplot(temp, las = 2, names.arg = names(temp), # 차트 출력
 #---------------------------------------------
 # wordcloud 작성
 #---------------------------------------------
-wordcloud(names(word_count),freq=word_count,scale=c(6,0.3),min.freq=3, random.order=F,rot.per=.1,colors=pal2)
+wordcloud(names(word_count),freq=word_count,scale=c(8,0.4),min.freq=1, random.order=F,rot.per=.1,colors=pal2)
 
 
 #---------------------------------------------
@@ -202,7 +202,7 @@ text <- readLines(file.choose())                     # speech2.txt
 noun <- sapply(text, extractNoun, USE.NAMES=F)
 noun2 <- unlist(noun) 
 word_count <- table(noun2) 
-wordcloud(names(word_count),freq=word_count,scale=c(6,0.3),min.freq=3, random.order=F,rot.per=.1,colors=pal2)
+wordcloud(names(word_count),freq=word_count,scale=c(8,0.4),min.freq=1, random.order=F,rot.per=.1,colors=pal2)
 
 ##################################################
 # 추출된 단어의 삭제 
@@ -215,7 +215,15 @@ noun2 <- gsub("우리", "", noun2)
 noun2 <- Filter(function(x){nchar(x) >= 2}, noun2)
 
 word_count <- table(noun2)
-wordcloud(names(word_count),freq=word_count,scale=c(6,0.3),min.freq=3, random.order=F,rot.per=.1,colors=pal2)
+wordcloud(names(word_count),freq=word_count,scale=c(8,0.4),min.freq=1, random.order=F,rot.per=.1,colors=pal2)
 
 ##################################################
+
+
+
+#-----------------------------------------------------------------------------------
+# [연습문제]
+# 역대 대통령의 연설기록 사이트(http://www.pa.go.kr/research/contents/speech/index.jsp)에서
+# 대통령들의 취임연설문을 비교분석하라.
+#-----------------------------------------------------------------------------------
 
