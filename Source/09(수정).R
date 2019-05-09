@@ -22,13 +22,17 @@ busRtNm <- ""                      # 검색할 노선버스 번호를 빈문자로 정한다.
 API_key <- "API Key"               # data.go.kr에서 발급받은 API_key 입력
 
 url <- paste("http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList?ServiceKey=", API_key, "&strSrch=",busRtNm,sep="")
-xmefile <- xmlParse(url)
-xmlRoot(xmefile)
 
-df <- xmlToDataFrame(getNodeSet(xmefile, "//itemList"))
+xmefile <- xmlParse(url)           # 해당 url에 데이터를 요구(request)하고, 
+                                   # 그 결과(response)를 xmefile 변수에 저장한다.
+xmlRoot(xmefile)                   # xmefile변수의 내용을 콘솔에 출력한다. 
+
+df <- xmlToDataFrame(getNodeSet(xmefile, "//itemList"))    # xml 형식을 데이터프레임으로 변환.
 str(df)                            # 노선정보조회 서비스 Open API 활용 가이드 : p. 10-11 (2) 응답메시지 명세 참고...
 
-df_busRoute$busRouteId 
+head(df)
+
+df$busRouteId                      # 노선ID 전체 출력
 
 
 ##################################################
@@ -36,7 +40,7 @@ df_busRoute$busRouteId
 ##################################################
 
 
-busRtNm <- "402"                      # 검색할 노선버스 번호
+busRtNm <- "402"                                  # 검색할 노선버스 번호
 
 url <- paste("http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList?ServiceKey=", API_key, "&strSrch=",busRtNm,sep="")
 xmefile <- xmlParse(url)
