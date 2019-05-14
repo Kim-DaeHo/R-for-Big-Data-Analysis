@@ -75,15 +75,8 @@ gpsY <- as.numeric(as.character(df$gpsY))
 gc <- data.frame(lon=gpsX, lat=gpsY)
 gc
 
-#--------------------------------------------------------------
-# 차량번호 포함시키기 => 지도 위에 현재 운행 중인 차량번호를 표시하기 위해....
-#--------------------------------------------------------------
-gc1 <- data.frame(BusNo=df$plainNo, lon=gpsX, lat=gpsY)
-gc1
-
-
 ##################################################
-# p.257 구글 맵에 버스 위치 출력
+# p.257 구글 맵에 버스 위치 출력 (marker 표시)
 ##################################################
 
 register_google(key="Google API Key")      # https://console.cloud.google.com 에서 확인
@@ -92,5 +85,57 @@ cen <- c(mean(gc$lon), mean(gc$lat))
 map <- get_googlemap(center=cen, maptype="roadmap",zoom=11, marker=gc)
 ggmap(map, extent="device")
 
-##################################################
 
+#--------------------------------------------------------------
+# 차량번호 포함시키기 => 지도 위에 현재 운행 위치에 차량번호를 표시하기 위해....
+#--------------------------------------------------------------
+gc1 <- data.frame(BusNo=df$plainNo, lon=gpsX, lat=gpsY)
+gc1
+
+cen <- c(mean(gc1$lon), mean(gc1$lat))
+map <- get_googlemap(center=cen, maptype="roadmap",zoom=12)
+gmap <- ggmap(map, extent="device")
+gmap1 <- gmap + geom_text(data=gc1, aes(x=gc1$lon, y=gc1$lat), size=3, label=gc1$BusNo) +     # 운행중인 버스번호 출력
+         geom_point(data = gc1, aes(gc1$lon, gc1$lat), size = 1, colour='#018b4d')            # 운행중인 버스 위치 표시
+
+
+##################################################
+# <추가> 노선 ID에 대한 버스 노선 지도에 표시하기
+#       버스 노선정보조회 서비스 Open API 활용가이드 P. 13 참고
+##################################################
+df_busRoute$busRouteId <- "100100112"
+url <- paste("http://ws.bus.go.kr/api/rest/busRouteInfo/getStaionByRoute?serviceKey=", API_key, "&busRouteId=",
+            df_busRoute$busRouteId, sep="")             # 노선ID에 해당하는 노선의 지도상 경로
+xmefile <- xmlParse(url)
+xmlRoot(xmefile)
+
+# p.254
+df_path <- xmlToDataFrame(getNodeSet(xmefile, "//itemList"))
+df_path
+
+gpsX <- as.numeric(as.character(df_path$gpsX))
+gpsY <- as.numeric(as.character(df_path$gpsY))
+
+#---------------------------------------------------------------------
+# http://philogrammer.com/2017-03-15/encoding/ (한글 인코딩문제 해결 방안)
+# library(devtools)
+# install_github("plgrmr/readAny", force = TRUE)
+# library(readAny)
+#---------------------------------------------------------------------
+
+stationNo <- type.convert(df_path$stationNo, as.is=TRUE)      # factor -> character로 변환... (한글정거장 이름 stationNm -> 한글변환 에러 발생)
+stationNo <- as.character(stationNo)
+
+gc2 <- data.frame(stationNo=stationNo, lon=gpsX, lat=gpsY)
+gc2
+
+cen2 <- c(mean(gc2$lon), mean(gc2$lat))
+
+map <- get_googlemap(center=cen2,                # 3) 기본적인 지도 정보 확인
+                      maptype = "roadmap",       
+                      zoom=12)
+gmap <- ggmap(map)
+
+gmap + geom_text(data = gc2, aes(x=lon, y=lat), size=2, label=stationNo, color="red") +         # 정거장 번호 출력
+       geom_point(data = gc2, aes(x=gc2$lon, y=gc2$lat), size = 1, colour='#018b4d') +          # 정거장 위치에 점 찍기
+       geom_path(data = gc2, aes(x=gc2$lon, y=gc2$lat), color = "blue", alpha = .5, lwd = 1)    # 노선 경로 그리기
