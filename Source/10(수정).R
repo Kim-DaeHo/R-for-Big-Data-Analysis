@@ -99,6 +99,8 @@ noun2 <- gsub('"', '', noun2)
 noun2 <- gsub('\'', '', noun2)
 noun2 <- gsub(' ', '', noun2)
 noun2 <- gsub('-', '', noun2)
+# noun2 <- gsub('++', '', noun2)   # 불필요한 '++' 제거
+
 noun2
 
 #-----------------------------------
