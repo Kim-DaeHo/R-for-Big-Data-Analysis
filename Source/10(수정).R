@@ -123,7 +123,7 @@ temp                                         # 확인
 temp <- temp[-1]                                # 공백단어 제거
 barplot(temp, las = 2, names.arg = names(temp), # 차트 출력    
          col =rainbow(30), main ="Most frequent words", # 축, 제목 입력       
-         ylab = "Word frequencies") # 축 입력
+         ylab = "Word frequencies", ylim = c(0,10)) # 축 입력
 
 
 
