@@ -121,12 +121,4 @@ df$상품명 <- format(df$상품명, justify = "left")
 df
 
 
-
-product_list <- xpathSApply(doc, "//ul[@id='productList']//dd[@class='name']", xmlValue)
-product_list <- gsub("\n", "", product_list)
-product_list <- gsub("  ", "", product_list)
-product_list       # 추출한 상품ID 출력
-
-
-
      
