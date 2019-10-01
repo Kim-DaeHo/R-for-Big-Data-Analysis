@@ -20,19 +20,25 @@ Name_2 <- read_excel("test.xlsx",
         sheet=2)            # sheet = 2
 Name_2
 
-Mid_2 <- read_excel("test.xlsx", 
+Dept_2 <- read_excel("test.xlsx", 
        col_name=TRUE,      # TRUE to use the first row as column names
        sheet=3)            # sheet = 3
+Dept_2
+
+
+Mid_2 <- read_excel("test.xlsx", 
+       col_name=TRUE,      # TRUE to use the first row as column names
+       sheet=4)            # sheet = 3
 Mid_2
 
 Final_2 <- read_excel("test.xlsx", 
          col_name=TRUE,      # TRUE to use the first row as column names
-         sheet=4)            # sheet = 1~7
+         sheet=5)            # sheet = 1~7
 Final_2
 
 Attendance_2 <- read_excel("test.xlsx", 
               col_name=TRUE,      # TRUE to use the first row as column names
-              sheet=5)            # sheet = 1~7
+              sheet=6)            # sheet = 1~7
 Attendance_2
 
 
